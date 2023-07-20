@@ -23,7 +23,15 @@ public class DBconnection {
         }
         return null;
     }
-
+public int getUpdateTable(String Query){
+    try{
+        Statement statement=getStatement();
+        return statement.executeUpdate(Query);
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+    return 0;
+}
     public static void main(String[] args) {
         DBconnection connection=new DBconnection();
         ResultSet res= connection.getQueryTable("select * from customer");

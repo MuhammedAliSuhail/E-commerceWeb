@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
@@ -121,5 +118,34 @@ public class UserInterface {
        footerBar.setAlignment(Pos.CENTER);
         footerBar.setPadding(new Insets(10));
 
+        buyNow.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                product Product=productlist.getSelectedProduct();
+
+                if(Product==null){
+                    getshowe(  "pleace select item !!");
+                    return;
+                }
+                if(customerLoginCustomer==null){
+                    getshowe( "please login!!");
+                    return;
+                }
+                boolean status=Order.placeOrder(customerLoginCustomer,Product);
+                if(status){
+                    getshowe("order sucssful");
+                }else {
+                    getshowe("order failed");
+                }
+            }
+        });
+
+        }
+    private void getshowe(String message){
+    Alert alert=new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("message");
+    alert.setContentText(message);
+    alert.setHeaderText(null);
+    alert.showAndWait();
     }
 }

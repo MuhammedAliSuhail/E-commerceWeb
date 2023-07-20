@@ -34,4 +34,8 @@ public class productList {
         ObservableList data=product.AllProducts();
         return craeteTable(data);
     }
+
+    public product getSelectedProduct(){
+        return productTable.getSelectionModel().getSelectedItem();
+    }
 }
